@@ -1,178 +1,198 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Edu-World | Learn • Create • Share</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Welcome to Edu-World</title>
   <style>
+    :root {
+      --primary: #4f46e5;
+      --accent: #a78bfa;
+      --light: #eef2ff;
+      --success: #10b981;
+    }
     body {
-      font-family: "Poppins", sans-serif;
-      background: linear-gradient(135deg, #eef2f3, #8e9eab);
       margin: 0;
-      padding: 0;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: linear-gradient(135deg, #dbeafe, #e9d5ff);
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      min-height: 100vh;
-      color: #333;
-    }
-    header {
-      background-color: #3a6ea5;
-      color: white;
-      width: 100%;
+      justify-content: center;
       text-align: center;
-      padding: 2rem 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
-      letter-spacing: 2px;
+    h1 {
+      color: var(--primary);
+      font-size: 2.8rem;
+      margin-bottom: 0.3em;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px #fff;
     }
-    .container {
+    p.tagline {
+      font-size: 1.1rem;
+      color: #444;
+      margin-bottom: 1.6em;
+    }
+    .upload-card {
       background: white;
-      margin-top: 2rem;
-      border-radius: 10px;
-      padding: 2rem;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
       width: 90%;
-      max-width: 600px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      text-align: center;
+      max-width: 480px;
     }
-    input[type="file"] {
+    input[type=file] {
       display: block;
-      margin: 1.5rem auto;
-      padding: 0.5rem;
-      border: 2px dashed #3a6ea5;
-      border-radius: 6px;
-      background: #f8f9fb;
+      width: 100%;
+      margin: 15px 0;
+      padding: 10px;
+      border: 2px dashed var(--accent);
+      border-radius: 12px;
       cursor: pointer;
-      width: 80%;
+      background: #fafaff;
     }
-    .upload-btn {
-      background-color: #3a6ea5;
+    button {
+      background: var(--primary);
       color: white;
       border: none;
-      padding: 0.7rem 1.5rem;
-      border-radius: 6px;
+      padding: 10px 22px;
+      border-radius: 12px;
+      font-size: 1rem;
       cursor: pointer;
-      transition: background 0.3s;
-      font-weight: bold;
-      margin: 0.5rem;
+      transition: background 0.2s ease;
     }
-    .upload-btn:hover {
-      background-color: #2b5077;
+    button:hover { background: var(--accent); }
+
+    #progress {
+      margin-top: 12px;
+      width: 100%;
+      height: 10px;
+      background: #e5e7eb;
+      border-radius: 8px;
+      overflow: hidden;
+      display: none;
+    }
+    #progress i {
+      display: block;
+      height: 100%;
+      width: 0%;
+      background: var(--success);
+      transition: width 0.2s linear;
+    }
+    #status { margin-top: 10px; font-size: 0.95rem; color: #333; }
+    img, video {
+      margin-top: 16px;
+      max-width: 100%;
+      border-radius: 10px;
     }
     footer {
-      margin-top: auto;
-      background-color: #3a6ea5;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      width: 100%;
-      font-size: 0.9rem;
+      margin-top: 40px;
+      font-size: 0.8rem;
+      color: #555;
     }
+    footer a { color: var(--primary); text-decoration: none; }
   </style>
 </head>
 <body>
+  <h1>Welcome to <span style="color:var(--accent)">Edu-World</span></h1>
+  <p class="tagline">A fun place for young learners! Upload your creative work below 🎨📸🎬</p>
 
-  <header>
-    <h1>Edu-World</h1>
-    <p>Learn • Create • Share</p>
-  </header>
+  <div class="upload-card">
+    <input id="fileInput" type="file" accept="image/*,video/*" />
+    <button id="uploadBtn">Upload to Cloud</button>
 
-  <div class="container">
-    <h2>Upload Your Learning Media</h2>
-    <input type="file" id="fileInput" accept="image/*,video/*" />
+    <div id="progress"><i></i></div>
+    <div id="status"></div>
+    <div id="previewArea"></div>
 
-    <button class="upload-btn" id="cloudinaryBtn">Upload to Cloudinary ☁️</button>
-    <button class="upload-btn" id="driveBtn">Upload to Google Drive 📂</button>
-
-    <p id="statusMsg"></p>
+    <p style="font-size:0.85rem;color:#666;margin-top:14px;">
+      💡 Tip: For faster uploads, compress large videos using free tools like
+      <a href="https://www.veed.io/tools/video-compressor" target="_blank" rel="noreferrer">Veed.io</a>
+      or
+      <a href="https://clideo.com/compress-video" target="_blank" rel="noreferrer">Clideo</a>.
+    </p>
   </div>
 
-  <footer>
-    &copy; 2025 Edu-World| Empowering Education Everywhere 🌍
-  </footer>
+  <footer>© 2025 Edu-World | Learn, Create &amp; Upload 🌟</footer>
 
   <script>
     const fileInput = document.getElementById('fileInput');
-    const statusMsg = document.getElementById('statusMsg');
+    const uploadBtn = document.getElementById('uploadBtn');
+    const progressBar = document.getElementById('progress');
+    const barFill = progressBar.querySelector('i');
+    const statusMsg = document.getElementById('status');
+    const preview = document.getElementById('previewArea');
 
-    /* ==========================
-       CLOUDINARY UPLOAD LOGIC
-       ========================== */
-    const CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/YOUR_CLOUD_NAME/upload";
-    const CLOUDINARY_UPLOAD_PRESET = "YOUR_UNSIGNED_UPLOAD_PRESET";
+    async function getSignature() {
+      const res = await fetch('/.netlify/functions/cloudinary-sign');
+      if (!res.ok) throw new Error('Could not get signature');
+      return res.json();
+    }
 
-    document.getElementById('cloudinaryBtn').addEventListener('click', async () => {
-      const file = fileInput.files[0];
-      if (!file) {
-        statusMsg.textContent = "❗ Please choose a file first!";
-        statusMsg.style.color = "red";
+    uploadBtn.addEventListener('click', async () => {
+      preview.innerHTML = '';
+      statusMsg.textContent = '';
+      barFill.style.width = '0%';
+      progressBar.style.display = 'none';
+
+      if (!fileInput.files.length) {
+        alert('Please choose a file first');
         return;
       }
-
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
-
-      statusMsg.textContent = "⏳ Uploading to Cloudinary...";
-      statusMsg.style.color = "black";
-
-      try {
-        const response = await fetch(CLOUDINARY_URL, {
-          method: 'POST',
-          body: formData
-        });
-        const data = await response.json();
-        if (data.secure_url) {
-          statusMsg.innerHTML = `✅ Uploaded Successfully! <br> 
-            <a href="${data.secure_url}" target="_blank">View File</a>`;
-          statusMsg.style.color = "green";
-        } else {
-          throw new Error("Upload failed.");
-        }
-      } catch (err) {
-        console.error(err);
-        statusMsg.textContent = "❌ Cloudinary upload failed.";
-        statusMsg.style.color = "red";
-      }
-    });
-
-    /* ==========================
-       GOOGLE DRIVE UPLOAD LOGIC
-       ========================== */
-    // You must first deploy a Google Apps Script Web App (see instructions below)
-    const GOOGLE_SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
-
-    document.getElementById('driveBtn').addEventListener('click', async () => {
       const file = fileInput.files[0];
-      if (!file) {
-        statusMsg.textContent = "❗ Please choose a file first!";
-        statusMsg.style.color = "red";
-        return;
-      }
-
-      const formData = new FormData();
-      formData.append("file", file);
-
-      statusMsg.textContent = "⏳ Uploading to Google Drive...";
-      statusMsg.style.color = "black";
 
       try {
-        const res = await fetch(GOOGLE_SCRIPT_URL, {
-          method: "POST",
-          body: formData
-        });
-        const text = await res.text();
-        statusMsg.innerHTML = `✅ Uploaded to Drive! <br> ${text}`;
-        statusMsg.style.color = "green";
+        statusMsg.textContent = 'Preparing upload...';
+        const sigData = await getSignature();
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('api_key', sigData.api_key);
+        formData.append('timestamp', sigData.timestamp);
+        formData.append('signature', sigData.signature);
+
+        const uploadUrl = `https://api.cloudinary.com/v1_1/${sigData.cloud_name}/auto/upload`;
+
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', uploadUrl);
+
+        progressBar.style.display = 'block';
+        xhr.upload.onprogress = e => {
+          if (e.lengthComputable) {
+            const pct = Math.round((e.loaded / e.total) * 100);
+            barFill.style.width = pct + '%';
+          }
+        };
+
+        xhr.onload = function() {
+          if (xhr.status >= 200 && xhr.status < 300) {
+            const data = JSON.parse(xhr.responseText);
+            statusMsg.textContent = 'Upload complete! ✅';
+            const url = data.secure_url;
+            if (data.resource_type === 'image') {
+              const img = document.createElement('img');
+              img.src = url;
+              preview.appendChild(img);
+            } else {
+              const vid = document.createElement('video');
+              vid.src = url;
+              vid.controls = true;
+              preview.appendChild(vid);
+            }
+            const link = document.createElement('p');
+            link.innerHTML = `URL: <a href="${url}" target="_blank">${url}</a>`;
+            preview.appendChild(link);
+          } else {
+            statusMsg.textContent = 'Upload failed ❌';
+            console.error(xhr.responseText);
+          }
+        };
+
+        xhr.onerror = () => { statusMsg.textContent = 'Network error ❌'; };
+        xhr.send(formData);
       } catch (err) {
-        console.error(err);
-        statusMsg.textContent = "❌ Google Drive upload failed.";
-        statusMsg.style.color = "red";
+        statusMsg.textContent = 'Error: ' + err.message;
       }
     });
   </script>
